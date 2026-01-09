@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajes - Simula tu Futuro</title>
+    <link rel="stylesheet" href="../css/mensajes.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <h1 class="logo">Simula Tu Futuro</h1>
+        <a href="../index.html" class="btn-logout">Cerrar Sesión</a>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Navegación</h3>
+                <a href="../index.html" class="sidebar-link">← Inicio</a>
+                <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
+                <a href="perfil.html" class="sidebar-link">👤 Mi Perfil</a>
+                <a href="notificaciones.html" class="sidebar-link">🔔 Notificaciones</a>
+                <a href="mensajes.html" class="sidebar-link active">💬 Mensajes</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div class="messaging-container">
+                <div class="contacts-sidebar">
+                    <div class="search-box">
+                        <input type="text" placeholder="Buscar chat...">
+                    </div>
+                    <div class="contacts-list">
+                        <div class="contact-item active">
+                            <div class="avatar-sm">O</div>
+                            <div class="contact-info">
+                                <strong>Orientador USACH</strong>
+                                <p>Tu consulta sobre becas...</p>
+                            </div>
+                            <span class="msg-time">10:45</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="avatar-sm">S</div>
+                            <div class="contact-info">
+                                <strong>Soporte Técnico</strong>
+                                <p>Problema con el simulador</p>
+                            </div>
+                            <span class="msg-time">Ayer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-area">
+                    <div class="chat-header">
+                        <div class="avatar-sm">O</div>
+                        <div>
+                            <h4>Orientador USACH</h4>
+                            <small>En línea ahora</small>
+                        </div>
+                    </div>
+
+                    <div class="chat-history">
+                        <div class="message received">
+                            <p>¡Hola! Recibimos tu consulta sobre la beca de excelencia académica para Medicina.</p>
+                            <span class="time">10:40 AM</span>
+                        </div>
+                        <div class="message sent">
+                            <p>Muchas gracias. ¿Qué documentos necesito subir para la postulación?</p>
+                            <span class="time">10:42 AM</span>
+                        </div>
+                        <div class="message received">
+                            <p>Principalmente tu certificado de notas y el registro social de hogares actualizado. ¿Los
+                                tienes a mano?</p>
+                            <span class="time">10:45 AM</span>
+                        </div>
+                    </div>
+
+                    <div class="chat-input">
+                        <input type="text" placeholder="Escribe un mensaje aquí...">
+                        <button class="btn-send">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+</body>
+
+</html>

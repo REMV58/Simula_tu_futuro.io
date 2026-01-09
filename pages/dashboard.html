@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Simula tu Futuro</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <h1 class="logo">Simula Tu Futuro</h1>
+        </div>
+        <div class="nav">
+            <a href="../index.html" class="btn-logout">Cerrar Sesión</a>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Navegación</h3>
+                <a href="../index.html" class="sidebar-link">← Volver al Inicio</a>
+                <a href="dashboard.html" class="sidebar-link active">📊 Dashboard</a>
+                <a href="perfil.html" class="sidebar-link">👤 Mi Perfil</a>
+                <a href="notificaciones.html" class="sidebar-link">🔔 Notificaciones</a>
+                <a href="mensajes.html" class="sidebar-link">💬 Mensajes</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <h2 id="welcome-text">Hola, Usuario. Este es tu panel.</h2>
+
+            <div class="dashboard-grid">
+
+                <div class="card">
+                    <div class="card-tag">Información</div>
+                    <h3>Oferta Académica</h3>
+                    <p>Compara ingresos, empleabilidad y becas actualizadas de las mejores instituciones.</p>
+                    <button class="btn-outline" onclick="window.location.href='oferta.html'">Ver detalles</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-tag">RA / VR</div>
+                    <h3>Simulador 360°</h3>
+                    <p>Experimenta el campo laboral de Medicina y otras áreas desde dentro.</p>
+                    <button class="btn-outline" onclick="window.location.href='simulador.html'">Iniciar</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-tag">Pruebas</div>
+                    <h3>Ensayos PAES</h3>
+                    <p>Entrena con ensayos actualizados de M1, M2, Ciencias e Historia.</p>
+                    <button class="btn-outline" onclick="window.location.href='ensayos.html'">Ir a ensayos</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-tag">Fechas</div>
+                    <h3>Calendario PAES</h3>
+                    <p>Mantente al día con las fechas de inscripción, rendición y resultados del proceso.</p>
+                    <button class="btn-outline" onclick="window.location.href='calendario.html'">Ver fechas</button>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <div id="toast" class="toast">Mensaje</div>
+
+    <script src="../js/dashboard.js"></script>
+</body>
+
+</html>

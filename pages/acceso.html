@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso - Simula tu Futuro</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/contacto.css">
+    <link rel="stylesheet" href="../css/acceso.css">
+</head>
+
+<body class="login-body">
+
+    <div class="login-container">
+        <div class="login-card" id="loginCard">
+            <div class="login-header">
+                <a href="index.html" class="back-link">← Volver al inicio</a>
+                <h1>Bienvenido</h1>
+                <p>Ingresa a tu panel vocacional</p>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="usuario">Usuario</label>
+                    <input type="text" id="usuario" placeholder="Ej: estudiante" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" placeholder="••••" required>
+                </div>
+
+                <button type="submit" class="btn-access login-btn">
+                    Iniciar Sesión
+                </button>
+
+                <p id="error-msg" class="error-text" style="display: none;">
+                    ❌ Credenciales incorrectas, intenta de nuevo.
+                </p>
+            </form>
+
+            <div class="login-footer">
+                <p>¿No tienes cuenta? <a href="#">Regístrate aquí</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/acceso.js"></script>
+</body>
+
+</html>

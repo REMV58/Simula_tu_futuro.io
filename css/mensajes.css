@@ -1,0 +1,121 @@
+/* =========================================
+   VARIABLES Y BASE
+   ========================================= */
+:root {
+    --primary: #4A90E2;
+    --bg-light: #f4f7f6;
+    --text-dark: #333333;
+    --text-muted: #666666;
+    --white: #ffffff;
+    --border: #e2e8f0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background-color: var(--bg-light); color: var(--text-dark); }
+
+/* HEADER & SIDEBAR (Consistencia) */
+.header {
+    background-color: var(--primary); height: 70px; padding: 0 5%;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.logo { color: var(--white); font-size: 1.4rem; font-weight: 800; text-transform: uppercase; }
+.btn-logout {
+    color: var(--white); text-decoration: none; padding: 8px 16px;
+    border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-weight: 600;
+}
+
+.main-layout { display: flex; height: calc(100vh - 70px); }
+
+.sidebar {
+    width: 260px; background-color: var(--white);
+    border-right: 1px solid var(--border); padding: 30px 0;
+}
+.sidebar-section { padding: 0 20px; }
+.sidebar-link {
+    display: flex; align-items: center; padding: 12px 15px;
+    color: var(--text-dark); text-decoration: none; border-radius: 8px; margin-bottom: 5px;
+}
+.sidebar-link.active { background-color: rgba(74, 144, 226, 0.1); color: var(--primary); font-weight: 700; }
+
+/* =========================================
+   SISTEMA DE MENSAJERÍA
+   ========================================= */
+.content { flex: 1; padding: 20px; display: flex; }
+
+.messaging-container {
+    display: flex; width: 100%; background: var(--white);
+    border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+/* Lista de Contactos */
+.contacts-sidebar {
+    width: 320px; border-right: 1px solid var(--border);
+    display: flex; flex-direction: column;
+}
+
+.search-box { padding: 20px; border-bottom: 1px solid var(--border); }
+.search-box input {
+    width: 100%; padding: 10px; border-radius: 10px;
+    border: 1px solid var(--border); background: #f8fafc;
+}
+
+.contact-item {
+    display: flex; align-items: center; padding: 15px 20px;
+    gap: 15px; cursor: pointer; transition: 0.2s; position: relative;
+}
+.contact-item:hover { background: #f8fafc; }
+.contact-item.active { background: #f0f7ff; }
+
+.avatar-sm {
+    width: 45px; height: 45px; background: var(--primary);
+    color: white; border-radius: 50%; display: flex;
+    align-items: center; justify-content: center; font-weight: bold;
+}
+
+.contact-info { flex: 1; overflow: hidden; }
+.contact-info strong { display: block; font-size: 0.95rem; }
+.contact-info p {
+    font-size: 0.8rem; color: var(--text-muted);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.msg-time { font-size: 0.7rem; color: #999; }
+
+/* Área de Chat */
+.chat-area { flex: 1; display: flex; flex-direction: column; }
+
+.chat-header {
+    padding: 15px 25px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 15px;
+}
+.chat-header h4 { font-size: 1rem; }
+.chat-header small { color: #2ecc71; font-weight: 600; }
+
+.chat-history {
+    flex: 1; padding: 25px; overflow-y: auto;
+    background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+    background-size: 20px 20px; display: flex; flex-direction: column; gap: 15px;
+}
+
+.message { max-width: 70%; padding: 12px 18px; border-radius: 15px; position: relative; }
+.message p { font-size: 0.95rem; line-height: 1.4; }
+.time { font-size: 0.7rem; opacity: 0.7; display: block; margin-top: 5px; }
+
+.message.received { background: #f1f5f9; align-self: flex-start; border-bottom-left-radius: 2px; }
+.message.sent { background: var(--primary); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+
+.chat-input { padding: 20px; border-top: 1px solid var(--border); display: flex; gap: 10px; }
+.chat-input input {
+    flex: 1; padding: 12px 15px; border-radius: 10px;
+    border: 1px solid var(--border); outline: none;
+}
+.btn-send {
+    background: var(--primary); color: white; border: none;
+    padding: 0 20px; border-radius: 10px; font-weight: 700; cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .contacts-sidebar { width: 80px; }
+    .contact-info, .search-box, .msg-time { display: none; }
+}

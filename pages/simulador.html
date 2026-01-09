@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador 360 - Simula tu Futuro</title>
+    <link rel="stylesheet" href="../css/simulador.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <h1 class="logo">Simula Tu Futuro</h1>
+        </div>
+        <a href="../index.html" class="btn-logout">Cerrar Sesión</a>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Navegación</h3>
+                <a href="../index.html" class="sidebar-link">← Volver al Inicio</a>
+                <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
+                <a href="ensayos.html" class="sidebar-link">📝 Ensayos</a>
+                <a href="ofertas.html" class="sidebar-link">🎓 Oferta Académica</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="content-header">
+                <div class="title-group">
+                    <h2>Simulador Inmersivo 360°</h2>
+                    <p>Explora entornos laborales reales de forma interactiva.</p>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Buscar experiencia o carrera..."
+                        onkeyup="filtrarExperiencias()">
+                </div>
+            </header>
+
+            <div class="oferta-grid" id="simuladorGrid">
+            </div>
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="videoModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="cerrarModal()">&times;</button>
+            <div class="video-wrapper">
+                <iframe id="modalIframe" src="" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+            <div class="modal-info">
+                <h2 id="modalTitle">Título</h2>
+                <p id="modalDesc">Descripción</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/simulador.js"></script>
+</body>
+
+</html>

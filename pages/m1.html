@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ensayo M1 - Simula tu Futuro</title>
+    <link rel="stylesheet" href="../css/m1.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <h1 class="logo">Simula Tu Futuro</h1>
+        </div>
+        <div class="header-right">
+            <div id="timerDisplay">02:20:00</div>
+            <button id="finishBtn" class="btn-finish">Finalizar Ensayo</button>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Navegación</h3>
+                <a href="ensayos.html" class="sidebar-link">← Volver a Ensayos</a>
+                <a href="dashboard.html" class="sidebar-link">📊 Mi Panel</a>
+            </div>
+            <div class="sidebar-section" style="margin-top: 20px;">
+                <h3>Estado</h3>
+                <div id="pageIndicator" class="page-badge">Página 1 de 7</div>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div id="examArea">
+                <div class="exam-header-info">
+                    <h2>Competencia Matemática M1</h2>
+                    <p>Puedes finalizar el ensayo en cualquier momento. Las preguntas no respondidas se marcarán como
+                        omitidas.</p>
+                </div>
+
+                <div id="questionsWrapper"></div>
+
+                <div class="pagination-controls" id="navControls">
+                    <button id="prevBtn" class="btn-nav">Anterior</button>
+                    <button id="nextBtn" class="btn-nav">Siguiente</button>
+                </div>
+            </div>
+
+            <div id="resultsArea" class="results-container hidden">
+                <div class="results-card">
+                    <h2>Resumen de tu Ensayo</h2>
+                    <div class="result-main-score">
+                        <div class="circle-progress">
+                            <span id="percentageText">0%</span>
+                            <p>Efectividad</p>
+                        </div>
+                        <div class="ratio-text">
+                            <span id="ratioDisplay">0 / 65</span>
+                            <p>Buenas / Total</p>
+                        </div>
+                    </div>
+
+                    <div class="detailed-stats">
+                        <div class="stat-box success">
+                            <strong id="correctCount">0</strong>
+                            <span>Correctas</span>
+                        </div>
+                        <div class="stat-box error">
+                            <strong id="incorrectCount">0</strong>
+                            <span>Incorrectas</span>
+                        </div>
+                        <div class="stat-box omit">
+                            <strong id="omitCount">0</strong>
+                            <span>Omitidas</span>
+                        </div>
+                    </div>
+
+                    <div class="results-actions">
+                        <button onclick="location.reload()" class="btn-primary">Reiniciar Ensayo</button>
+                        <a href="ensayos.html" class="btn-secondary">Salir al Panel</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/m1.js"></script>
+</body>
+
+</html>

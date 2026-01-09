@@ -1,0 +1,179 @@
+/* =========================================
+   VARIABLES Y BASE
+   ========================================= */
+:root {
+    --primary: #4A90E2;
+    --text-dark: #2D3436;
+    --text-muted: #636E72;
+    --bg-light: #F1F2F6;
+    --white: #FFFFFF;
+    --border: #DFE6E9;
+    
+    /* Colores por Materia */
+    --math: #FF9F43;      /* Naranja */
+    --math-2: #E67E22;    /* Naranja oscuro */
+    --lang: #54A0FF;      /* Azul */
+    --history: #576574;   /* Gris pizarra */
+    --science-bio: #10AC84; /* Verde */
+    --science-fis: #EE5253; /* Rojo */
+    --science-qui: #00D2D3; /* Turquesa */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+/* =========================================
+   HEADER Y SIDEBAR (Consistencia Global)
+   ========================================= */
+.header {
+    background-color: var(--primary);
+    height: 70px;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.logo { font-size: 1.4rem; font-weight: 800; }
+
+.btn-logout {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.main-layout { display: flex; min-height: calc(100vh - 70px); }
+
+.sidebar {
+    width: 260px;
+    background-color: var(--white);
+    border-right: 1px solid var(--border);
+    padding: 30px 0;
+}
+
+.sidebar-section { padding: 0 20px; }
+.sidebar-section h3 {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.sidebar-link {
+    display: block;
+    padding: 12px 15px;
+    color: var(--text-dark);
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.sidebar-link.active {
+    background-color: rgba(74, 144, 226, 0.1);
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* =========================================
+   CONTENIDO PRINCIPAL
+   ========================================= */
+.content { flex: 1; padding: 40px; }
+
+.content-header { margin-bottom: 35px; }
+.content-header h2 { font-size: 1.8rem; margin-bottom: 8px; }
+.content-header p { color: var(--text-muted); }
+
+/* =========================================
+   GRID DE ENSAYOS
+   ========================================= */
+.ensayos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.test-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.test-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    border-color: var(--primary);
+}
+
+/* Iconos Dinámicos */
+.test-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.test-icon.math { background: var(--math); }
+.test-icon.math-2 { background: var(--math-2); }
+.test-icon.lang { background: var(--lang); }
+.test-icon.history { background: var(--history); }
+.test-icon.science-bio { background: var(--science-bio); }
+.test-icon.science-fis { background: var(--science-fis); }
+.test-icon.science-qui { background: var(--science-qui); }
+
+.test-card h3 { font-size: 1.25rem; margin-bottom: 10px; color: var(--text-dark); }
+.test-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; }
+
+/* Botón de Comienzo */
+.btn-start {
+    display: block;
+    text-decoration: none;
+    background: var(--text-dark);
+    color: white;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.btn-start:hover {
+    background: var(--primary);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+    .main-layout { flex-direction: column; }
+    .sidebar { width: 100%; border-bottom: 1px solid var(--border); }
+    .content { padding: 20px; }
+    .ensayos-grid { grid-template-columns: 1fr; }
+}

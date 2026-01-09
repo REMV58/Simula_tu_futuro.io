@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oferta Académica - Simula tu Futuro</title>
+    <link rel="stylesheet" href="../css/oferta.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <h1 class="logo">Simula Tu Futuro</h1>
+        </div>
+        <a href="../index.html" class="btn-logout">Cerrar Sesión</a>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Navegación</h3>
+                <a href="../index.html" class="sidebar-link">← Volver al Inicio</a>
+                <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
+                <a href="perfil.html" class="sidebar-link">👤 Mi Perfil</a>
+                <a href="notificaciones.html" class="sidebar-link">🔔 Notificaciones</a>
+                <a href="mensajes.html" class="sidebar-link">💬 Mensajes</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="content-header">
+                <div class="title-group">
+                    <h2>Oferta Académica 2026</h2>
+                    <p>Explora las opciones disponibles en el sistema de admisión.</p>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Buscar por carrera o universidad...">
+                </div>
+            </header>
+
+            <div class="oferta-grid" id="ofertaGrid">
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/oferta.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificaciones - Simula tu Futuro</title>
+    <link rel="stylesheet" href="../css/notificaciones.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <h1 class="logo">Simula Tu Futuro</h1>
+        <a href="../index.html" class="btn-logout">Cerrar Sesión</a>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Navegación</h3>
+                <a href="../index.html" class="sidebar-link">← Inicio</a>
+                <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
+                <a href="perfil.html" class="sidebar-link">👤 Mi Perfil</a>
+                <a href="notificaciones.html" class="sidebar-link active">🔔 Notificaciones</a>
+                <a href="mensajes.html" class="sidebar-link">💬 Mensajes</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div class="section-header">
+                <h2>Mis Notificaciones</h2>
+                <button class="btn-clear" onclick="showToast('Notificaciones marcadas como leídas')">Marcar todas como
+                    leídas</button>
+            </div>
+
+            <div class="notifications-container">
+                <div class="notification-item unread urgent">
+                    <div class="notif-icon">⚠️</div>
+                    <div class="notif-content">
+                        <div class="notif-title">¡Plazo de inscripción por vencer!</div>
+                        <p>Recuerda que quedan solo 2 días para inscribirte en el proceso PAES de invierno.</p>
+                        <span class="notif-time">Hace 10 minutos</span>
+                    </div>
+                    <div class="notif-dot"></div>
+                </div>
+
+                <div class="notification-item unread">
+                    <div class="notif-icon">💬</div>
+                    <div class="notif-content">
+                        <div class="notif-title">Nuevo mensaje de Orientador</div>
+                        <p>Has recibido una respuesta sobre tu consulta de becas y beneficios estatales.</p>
+                        <span class="notif-time">Hace 2 horas</span>
+                    </div>
+                    <div class="notif-dot"></div>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notif-icon">✅</div>
+                    <div class="notif-content">
+                        <div class="notif-title">Simulacro completado</div>
+                        <p>Tu ensayo de Matemática 1 ha sido procesado. Ya puedes revisar tu puntaje estimado.</p>
+                        <span class="notif-time">Ayer a las 18:45</span>
+                    </div>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notif-icon">🏛️</div>
+                    <div class="notif-content">
+                        <div class="notif-title">Nueva charla USACH</div>
+                        <p>La Universidad de Santiago ha publicado un nuevo webinar sobre Medicina para este jueves.</p>
+                        <span class="notif-time">Hace 2 días</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="toast" class="toast">Mensaje</div>
+    <script src="../js/dashboard.js"></script>
+</body>
+
+</html>
