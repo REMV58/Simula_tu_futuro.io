@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Becas y Beneficios - Simula tu Futuro</title>
+    <link rel="stylesheet" href="../css/becas.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <h1 class="logo">Simula Tu Futuro</h1>
+        </div>
+        <div class="nav">
+            <a href="../index.html" class="btn-logout">Cerrar Sesión</a>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Navegación</h3>
+                <a href="../index.html" class="sidebar-link">← Volver al Inicio</a>
+                <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
+                <a href="perfil.html" class="sidebar-link">👤 Mi Perfil</a>
+                <a href="notificaciones.html" class="sidebar-link">🔔 Notificaciones</a>
+                <a href="mensajes.html" class="sidebar-link">💬 Mensajes</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="content-header">
+                <div class="title-group">
+                    <h2>Becas y Beneficios 2026</h2>
+                    <p>Infórmate sobre cómo financiar tu carrera y los requisitos del FUAS.</p>
+                </div>
+            </header>
+
+            <div class="becas-grid">
+                <div class="beca-card highlight">
+                    <div class="card-tag">El beneficio más solicitado</div>
+                    <h3>Gratuidad</h3>
+                    <p>Cubre la matrícula y el arancel real por la duración nominal de la carrera.</p>
+                    <ul>
+                        <li><strong>Requisito:</strong> Pertenecer al 60% de menores ingresos.</li>
+                        <li><strong>Institución:</strong> Debe estar adscrita a Gratuidad.</li>
+                    </ul>
+                    <button class="btn-action"
+                        onclick="window.open('https://portal.beneficiosestudiantiles.cl/gratuidad', '_blank')">Ver más
+                        detalles</button>
+                </div>
+
+                <div class="beca-card">
+                    <h3>Beca Bicentenario</h3>
+                    <p>Financia el arancel de referencia en universidades del Consejo de Rectores (CRUCH).</p>
+                    <ul>
+                        <li><strong>Requisito:</strong> Pertenecer al 70% de menores ingresos.</li>
+                        <li><strong>Puntaje:</strong> Mínimo 510 puntos promedio en PAES (M1 y CL).</li>
+                    </ul>
+                    <button class="btn-action"
+                        onclick="window.open('https://portal.beneficiosestudiantiles.cl/becas/beca-bicentenario', '_blank')">Ver
+                        requisitos</button>
+                </div>
+
+                <div class="beca-card">
+                    <h3>Beca Juan Gómez Millas</h3>
+                    <p>Para estudiantes que elijan cualquier institución acreditada (Univ, IP o CFT).</p>
+                    <ul>
+                        <li><strong>Requisito:</strong> Pertenecer al 70% de menores ingresos.</li>
+                        <li><strong>Puntaje:</strong> Mínimo 510 puntos promedio PAES.</li>
+                    </ul>
+                    <button class="btn-action"
+                        onclick="window.open('https://portal.beneficiosestudiantiles.cl/becas/beca-juan-gomez-millas', '_blank')">Saber
+                        más</button>
+                </div>
+
+                <div class="beca-card special">
+                    <h3>Crédito CAE</h3>
+                    <p>Préstamo del Estado con tasa del 2% para financiar estudios superiores.</p>
+                    <ul>
+                        <li><strong>Requisito:</strong> No exige nivel socioeconómico específico.</li>
+                        <li><strong>Puntaje:</strong> Mínimo 485 puntos promedio PAES.</li>
+                    </ul>
+                    <button class="btn-action" onclick="window.open('https://www.ingresa.cl', '_blank')">Ir a
+                        Ingresa.cl</button>
+                </div>
+            </div>
+
+            <section class="fuas-section">
+                <div class="fuas-info">
+                    <h3>¿Qué es el FUAS?</h3>
+                    <p>El Formulario Único de Postulación Socioeconómica es el primer paso para acceder a todos estos
+                        beneficios. Se completa online durante los meses de octubre y noviembre.</p>
+                    <a href="https://fuas.cl" target="_blank" class="btn-fuas">Ir al sitio oficial FUAS</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+
+</html>

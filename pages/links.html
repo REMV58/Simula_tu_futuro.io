@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enlaces Rápidos - Simula tu Futuro</title>
+    <link rel="stylesheet" href="../css/links.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <h1 class="logo">Simula Tu Futuro</h1>
+        </div>
+        <div class="nav">
+            <a href="../index.html" class="btn-logout">Cerrar Sesión</a>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Navegación</h3>
+                <a href="../index.html" class="sidebar-link">← Volver al Inicio</a>
+                <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
+                <a href="perfil.html" class="sidebar-link">👤 Mi Perfil</a>
+                <a href="notificaciones.html" class="sidebar-link">🔔 Notificaciones</a>
+                <a href="mensajes.html" class="sidebar-link">💬 Mensajes</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="content-header">
+                <div class="title-group">
+                    <h2>Enlaces de Interés</h2>
+                    <p>Accede rápidamente a las plataformas oficiales del proceso 2026.</p>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Buscar sitio o portal..." onkeyup="filtrarLinks()">
+                </div>
+            </header>
+
+            <div class="enlaces-grid" id="linksGrid">
+
+                <div class="enlace-card" onclick="window.open('https://demre.cl', '_blank')">
+                    <div class="icon-placeholder">🏛️</div>
+                    <div class="card-body">
+                        <h3>Portal DEMRE</h3>
+                        <p>Sitio oficial para inscripciones, temarios y rendición de la PAES.</p>
+                        <div class="link-footer">Visitar sitio oficial →</div>
+                    </div>
+                </div>
+
+                <div class="enlace-card" onclick="window.open('https://portal.beneficiosestudiantiles.cl', '_blank')">
+                    <div class="icon-placeholder">💰</div>
+                    <div class="card-body">
+                        <h3>Beneficios Estudiantiles</h3>
+                        <p>Infórmate sobre Gratuidad, becas y créditos del Estado.</p>
+                        <div class="link-footer">Ver beneficios →</div>
+                    </div>
+                </div>
+
+                <div class="enlace-card" onclick="window.open('https://acceso.mineduc.cl', '_blank')">
+                    <div class="icon-placeholder">🎓</div>
+                    <div class="card-body">
+                        <h3>Acceso Mineduc</h3>
+                        <p>Explora el portal mineduc.</p>
+                        <div class="link-footer">Explorar →</div>
+                    </div>
+                </div>
+
+                <div class="enlace-card"
+                    onclick="window.open('https://portal.beneficiosestudiantiles.cl/agenda', '_blank')">
+                    <div class="icon-placeholder">📅</div>
+                    <div class="card-body">
+                        <h3>Agenda del Proceso</h3>
+                        <p>Fechas clave para postulación, resultados y matrículas.</p>
+                        <div class="link-footer">Ver calendario →</div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function filtrarLinks() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('enlace-card');
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].querySelector('h3').innerText.toLowerCase();
+                let desc = cards[i].querySelector('p').innerText.toLowerCase();
+                cards[i].style.display = (title.includes(input) || desc.includes(input)) ? "flex" : "none";
+            }
+        }
+    </script>
+</body>
+
+</html>

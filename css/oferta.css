@@ -1,6 +1,3 @@
-/* =========================================
-   VARIABLES Y ESTILOS BASE
-   ========================================= */
 :root {
     --primary: #4A90E2;
     --text-dark: #2D3436;
@@ -9,6 +6,8 @@
     --white: #FFFFFF;
     --border: #DFE6E9;
     --success: #2ECC71;
+    --m1-color: #3498DB;
+    --m2-color: #E74C3C;
 }
 
 * {
@@ -23,9 +22,6 @@ body {
     color: var(--text-dark);
 }
 
-/* =========================================
-   HEADER Y SIDEBAR
-   ========================================= */
 .header {
     background-color: var(--primary);
     height: 70px;
@@ -80,9 +76,6 @@ body {
     color: var(--primary);
 }
 
-/* =========================================
-   CONTENIDO Y BUSCADOR
-   ========================================= */
 .content { flex: 1; padding: 40px; }
 
 .content-header {
@@ -107,9 +100,6 @@ body {
     box-shadow: 0 0 8px rgba(74, 144, 226, 0.2);
 }
 
-/* =========================================
-   GRID DE OFERTAS
-   ========================================= */
 .oferta-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -158,11 +148,30 @@ body {
 .s-item strong { display: block; color: var(--primary); font-size: 1.1rem; }
 .s-item span { font-size: 0.7rem; color: var(--text-muted); }
 
+.ponderaciones-container {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+.p-tag {
+    font-size: 0.75rem;
+    color: var(--text-dark);
+}
+
+.p-tag strong {
+    color: var(--primary);
+}
+
 .info-row {
     font-size: 0.85rem;
     color: var(--text-muted);
     margin-bottom: 15px;
     line-height: 1.5;
+    border-top: 1px dashed var(--border);
+    padding-top: 10px;
 }
 
 .price-tag {
@@ -182,7 +191,6 @@ body {
     margin-top: auto;
 }
 
-/* RESPONSIVE */
 @media (max-width: 992px) {
     .content-header { flex-direction: column; align-items: flex-start; gap: 20px; }
     #searchInput { width: 100%; }
