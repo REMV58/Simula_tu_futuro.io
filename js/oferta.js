@@ -1,15 +1,23 @@
 const carreras = [
-    {
+{
         nombre: "Medicina",
-        universidad: "U. de Chile",
+        universidad: "USACH",
         area: "Salud",
-        empleabilidad: "98%",
-        corte: "895.4",
+        empleabilidad: "97%",
+        corte: "882.3", // Puntaje de corte referencial
         duracion: "14 semestres",
-        sede: "Casa Central",
-        arancel: "$9.2M",
+        sede: "Campus Único (Estación Central)",
+        arancel: "$7.8M",
         pruebas: ["M1", "M2"],
-        ponderaciones: { nem: "10%", ran: "20%", len: "10%", mat1: "30%", mat2: "10%", cie: "20%" }
+        ponderaciones: { 
+            nem: "20%", 
+            ran: "20%", 
+            len: "10%", 
+            mat1: "20%", 
+            mat2: "10%", 
+            cie: "20%" 
+        },
+        malla: "https://vra.usach.cl/sites/vra/files/paginas/facimed_-_medicina_2024.pdf"
     },
     {
         nombre: "Ingeniería Civil",
@@ -21,7 +29,8 @@ const carreras = [
         sede: "San Joaquín",
         arancel: "$8.5M",
         pruebas: ["M1", "M2"],
-        ponderaciones: { nem: "10%", ran: "25%", len: "10%", mat1: "35%", mat2: "10%", cie: "10%" }
+        ponderaciones: { nem: "10%", ran: "25%", len: "10%", mat1: "35%", mat2: "10%", cie: "10%" },
+        malla: "https://ing.puc.cl/malla-curricular/"
     },
     {
         nombre: "Derecho",
@@ -33,7 +42,8 @@ const carreras = [
         sede: "Concepción",
         arancel: "$5.4M",
         pruebas: ["M1"],
-        ponderaciones: { nem: "20%", ran: "20%", len: "30%", mat1: "15%", hist: "15%" }
+        ponderaciones: { nem: "20%", ran: "20%", len: "30%", mat1: "15%", hist: "15%" },
+        malla: "https://admision.udec.cl/wp-content/uploads/2020/09/Malla-Derecho.pdf"
     },
     {
         nombre: "Psicología",
@@ -45,11 +55,12 @@ const carreras = [
         sede: "Santiago Centro",
         arancel: "$6.1M",
         pruebas: ["M1"],
-        ponderaciones: { nem: "15%", ran: "25%", len: "25%", mat1: "15%", hist: "20%" }
+        ponderaciones: { nem: "15%", ran: "25%", len: "25%", mat1: "15%", hist: "20%" },
+        malla: "https://psicologia.udp.cl/cms/wp-content/uploads/2023/12/MALLA-PSICOLOGIA-2024.pdf"
     },
     {
         nombre: "Arquitectura",
-        universidad: "UTFSM",
+        universidad: "  ",
         area: "Diseño y Const.",
         empleabilidad: "88%",
         corte: "745.3",
@@ -57,7 +68,8 @@ const carreras = [
         sede: "Valparaíso",
         arancel: "$5.9M",
         pruebas: ["M1"],
-        ponderaciones: { nem: "10%", ran: "20%", len: "10%", mat1: "40%", cie: "20%" }
+        ponderaciones: { nem: "10%", ran: "20%", len: "10%", mat1: "40%", cie: "20%" },
+        malla: "https://usm.cl/wp-content/uploads/2025/09/ARQUI-2048x954.webp"
     }
 ];
 
@@ -68,7 +80,10 @@ function renderizarCarreras(lista) {
     ofertaGrid.innerHTML = '';
 
     if (lista.length === 0) {
-        ofertaGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 50px; color: #666;"><p>No se encontraron resultados.</p></div>`;
+        ofertaGrid.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 50px; color: #666;">
+                <p>No se encontraron resultados para tu búsqueda.</p>
+            </div>`;
         return;
     }
 
@@ -76,10 +91,12 @@ function renderizarCarreras(lista) {
         const card = document.createElement('div');
         card.className = 'oferta-card';
         
+        // Generar etiquetas para M1 y M2 con colores distintos
         let pruebasHTML = carrera.pruebas.map(p => 
             `<span style="background: ${p === 'M2' ? '#E74C3C' : '#3498DB'}; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.65rem; margin-left: 4px; font-weight: bold;">${p}</span>`
         ).join('');
 
+        // Generar detalle de ponderaciones
         let ponderacionHTML = '';
         for (const [prueba, valor] of Object.entries(carrera.ponderaciones)) {
             ponderacionHTML += `<div class="p-tag"><strong>${prueba.toUpperCase()}:</strong> ${valor}</div>`;
@@ -116,13 +133,22 @@ function renderizarCarreras(lista) {
                 <span><strong>Sede:</strong> ${carrera.sede}</span>
             </div>
 
-            <div class="price-tag" style="font-weight: 700; color: #2ECC71; margin-bottom: 5px;">Arancel: ${carrera.arancel} / año</div>
+            <div class="price-tag" style="font-weight: 700; color: #2ECC71; margin-bottom: 12px;">
+                Arancel: ${carrera.arancel} / año
+            </div>
+
+            <button class="btn-malla" 
+                onclick="window.open('${carrera.malla}', '_blank')" 
+                style="width: 100%; padding: 10px; background: #34495E; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: background 0.3s;">
+                Ver Malla Curricular 📄
+            </button>
         `;
         
         ofertaGrid.appendChild(card);
     });
 }
 
+// Evento de búsqueda (Filtra por nombre de carrera o universidad)
 searchInput.addEventListener('input', (e) => {
     const termino = e.target.value.toLowerCase();
     const filtradas = carreras.filter(c => 
@@ -132,4 +158,5 @@ searchInput.addEventListener('input', (e) => {
     renderizarCarreras(filtradas);
 });
 
+// Carga inicial al abrir la página
 document.addEventListener('DOMContentLoaded', () => renderizarCarreras(carreras));
