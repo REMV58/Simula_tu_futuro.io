@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Holland - Simula tu Futuro</title>
+    <link rel="stylesheet" href="../css/test_holland.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <h1 class="logo">Simula Tu Futuro</h1>
+        </div>
+        <div class="nav">
+            <a href="../index.html" class="btn-logout">Cerrar Sesión</a>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Navegación</h3>
+                <a href="../index.html" class="sidebar-link">← Inicio</a>
+                <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
+                <a href="perfil.html" class="sidebar-link">👤 Mi Perfil</a>
+                <a href="notificaciones.html" class="sidebar-link">🔔 Notificaciones</a>
+                <a href="mensajes.html" class="sidebar-link">💬 Mensajes</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div id="test-container" class="test-box">
+                <div class="progress-bar">
+                    <div id="progress" class="progress-fill"></div>
+                </div>
+
+                <div id="question-area">
+                    <span id="question-number">Pregunta 1 de 12</span>
+                    <h2 id="question-text">¿Te gusta trabajar con herramientas o máquinas?</h2>
+
+                    <div class="options">
+                        <button class="btn-option" onclick="answer(1)">Me gusta mucho</button>
+                        <button class="btn-option" onclick="answer(0)">No me interesa</button>
+                    </div>
+                </div>
+
+                <div id="result-area" style="display: none;">
+                    <h2>Tu Perfil Dominante es:</h2>
+                    <div id="top-profile" class="profile-badge">Cargando...</div>
+                    <p id="profile-desc"></p>
+                    <div class="result-actions">
+                        <button class="btn-primary-action" onclick="location.reload()">Repetir Test</button>
+                        <button class="btn-outline-action" onclick="location.href='dashboard.html'">Ir al
+                            Dashboard</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const questions = [
+            { text: "¿Te gusta trabajar con herramientas o máquinas?", cat: "R" },
+            { text: "¿Te interesa reparar instalaciones eléctricas o mecánicas?", cat: "R" },
+            { text: "¿Te gusta resolver problemas matemáticos o científicos?", cat: "I" },
+            { text: "¿Te daría curiosidad estudiar cómo funcionan las células?", cat: "I" },
+            { text: "¿Te gusta escribir historias, poemas o artículos?", cat: "A" },
+            { text: "¿Te interesa el diseño gráfico o la pintura?", cat: "A" },
+            { text: "¿Disfrutas ayudando a otras personas con sus problemas?", cat: "S" },
+            { text: "¿Te gustaría trabajar como voluntario en una ONG?", cat: "S" },
+            { text: "¿Te gustaría dirigir tu propia empresa o proyecto?", cat: "E" },
+            { text: "¿Te sientes cómodo liderando grupos de personas?", cat: "E" },
+            { text: "¿Eres una persona organizada que disfruta el orden?", cat: "C" },
+            { text: "¿Te gusta trabajar con datos, archivos o contabilidad?", cat: "C" }
+        ];
+
+        let currentQ = 0;
+        let scores = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
+
+        const descriptions = {
+            R: "Realista: Prefieres trabajar con objetos, máquinas o plantas. Ideal para Ingenierías o Construcción.",
+            I: "Investigador: Te gusta analizar y resolver problemas complejos. Ideal para Ciencias o Medicina.",
+            A: "Artístico: Eres creativo y valoras la autoexpresión. Ideal para Diseño, Arte o Arquitectura.",
+            S: "Social: Te gusta ayudar y enseñar. Ideal para Psicología, Docencia o Salud.",
+            E: "Emprendedor: Te gusta liderar y convencer. Ideal para Negocios, Derecho o Política.",
+            C: "Convencional: Prefieres el orden y los datos claros. Ideal para Auditoría o Administración."
+        };
+
+        function answer(points) {
+            let category = questions[currentQ].cat;
+            scores[category] += points;
+            currentQ++;
+            if (currentQ < questions.length) { updateQuestion(); }
+            else { showResult(); }
+        }
+
+        function updateQuestion() {
+            document.getElementById('question-number').innerText = `Pregunta ${currentQ + 1} de ${questions.length}`;
+            document.getElementById('question-text').innerText = questions[currentQ].text;
+            document.getElementById('progress').style.width = `${(currentQ / questions.length) * 100}%`;
+        }
+
+        function showResult() {
+            document.getElementById('question-area').style.display = 'none';
+            document.getElementById('result-area').style.display = 'block';
+            document.getElementById('progress').style.width = `100%`;
+            let top = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+            const profileNames = { R: "Realista", I: "Investigador", A: "Artístico", S: "Social", E: "Emprendedor", C: "Convencional" };
+            document.getElementById('top-profile').innerText = profileNames[top];
+            document.getElementById('profile-desc').innerText = descriptions[top];
+        }
+    </script>
+</body>
+
+</html>

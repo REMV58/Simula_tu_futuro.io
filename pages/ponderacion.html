@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Ponderada - Simula tu Futuro</title>
+    <link rel="stylesheet" href="../css/ponderacion.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <h1 class="logo">Simula Tu Futuro</h1>
+        </div>
+        <div class="nav">
+            <a href="../index.html" class="btn-logout">Cerrar Sesión</a>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Navegación</h3>
+                <a href="../index.html" class="sidebar-link">← Volver al Inicio</a>
+                <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
+                <a href="perfil.html" class="sidebar-link">👤 Mi Perfil</a>
+                <a href="notificaciones.html" class="sidebar-link">🔔 Notificaciones</a>
+                <a href="mensajes.html" class="sidebar-link">💬 Mensajes</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="content-header">
+                <h2>Calculadora de Ponderación PAES</h2>
+                <p>Ingresa tus puntajes (máx 1000) y los porcentajes oficiales de tu carrera.</p>
+            </header>
+
+            <div class="calc-container">
+                <div class="calc-grid">
+                    <div class="calc-card">
+                        <h3>1. Mis Puntajes</h3>
+                        <div class="input-group">
+                            <label>NEM</label>
+                            <input type="number" id="nem" placeholder="0" max="1000">
+                        </div>
+                        <div class="input-group">
+                            <label>Ranking</label>
+                            <input type="number" id="ranking" placeholder="0" max="1000">
+                        </div>
+                        <div class="input-group">
+                            <label>C. Lectora</label>
+                            <input type="number" id="lectura" placeholder="0" max="1000">
+                        </div>
+                        <div class="input-group">
+                            <label>Matemática M1</label>
+                            <input type="number" id="m1" placeholder="0" max="1000">
+                        </div>
+                        <div class="input-group">
+                            <label>Matemática M2</label>
+                            <input type="number" id="m2" placeholder="0" max="1000">
+                        </div>
+                        <div class="input-group">
+                            <label>Ciencias</label>
+                            <input type="number" id="ciencias" placeholder="0" max="1000">
+                        </div>
+                        <div class="input-group">
+                            <label>Historia</label>
+                            <input type="number" id="historia" placeholder="0" max="1000">
+                        </div>
+                    </div>
+
+                    <div class="calc-card">
+                        <h3>2. Porcentajes (%)</h3>
+                        <div class="input-group">
+                            <label>% NEM</label>
+                            <input type="number" id="p_nem" placeholder="%" class="pct">
+                        </div>
+                        <div class="input-group">
+                            <label>% Ranking</label>
+                            <input type="number" id="p_ranking" placeholder="%" class="pct">
+                        </div>
+                        <div class="input-group">
+                            <label>% C. Lectora</label>
+                            <input type="number" id="p_lectura" placeholder="%" class="pct">
+                        </div>
+                        <div class="input-group">
+                            <label>% M1</label>
+                            <input type="number" id="p_m1" placeholder="%" class="pct">
+                        </div>
+                        <div class="input-group">
+                            <label>% M2</label>
+                            <input type="number" id="p_m2" placeholder="%" class="pct">
+                        </div>
+                        <div class="input-group">
+                            <label>% Ciencias</label>
+                            <input type="number" id="p_ciencias" placeholder="%" class="pct">
+                        </div>
+                        <div class="input-group">
+                            <label>% Historia</label>
+                            <input type="number" id="p_historia" placeholder="%" class="pct">
+                        </div>
+                        <div class="total-pct">Total: <span id="total_pct">0</span>%</div>
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <button class="btn-calculate" onclick="calcularPonderado()">Calcular Puntaje Final</button>
+                    <div class="final-score-box">
+                        <span class="label">Tu Puntaje Ponderado:</span>
+                        <span id="finalScore">0.0</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function calcularPonderado() {
+            const ids = ['nem', 'ranking', 'lectura', 'm1', 'm2', 'ciencias', 'historia'];
+            const pIds = ['p_nem', 'p_ranking', 'p_lectura', 'p_m1', 'p_m2', 'p_ciencias', 'p_historia'];
+
+            let totalWeight = 0;
+            let errorPuntaje = false;
+
+            // Validar Puntajes (Máx 1000)
+            ids.forEach(id => {
+                const el = document.getElementById(id);
+                const val = parseFloat(el.value) || 0;
+                if (val > 1000) {
+                    el.style.borderColor = "red";
+                    errorPuntaje = true;
+                } else {
+                    el.style.borderColor = "#DFE6E9";
+                }
+            });
+
+            if (errorPuntaje) {
+                alert("Los puntajes no pueden ser superiores a 1000.");
+                return;
+            }
+
+            // Sumar Porcentajes
+            pIds.forEach(id => {
+                totalWeight += parseFloat(document.getElementById(id).value) || 0;
+            });
+
+            document.getElementById('total_pct').innerText = totalWeight;
+
+            if (totalWeight !== 100) {
+                alert("La suma de los porcentajes debe ser exactamente 100%. Actualmente es: " + totalWeight + "%");
+                return;
+            }
+
+            // Cálculo
+            let final = 0;
+            ids.forEach((id, index) => {
+                const score = parseFloat(document.getElementById(id).value) || 0;
+                const weight = parseFloat(document.getElementById(pIds[index]).value) || 0;
+                final += score * (weight / 100);
+            });
+
+            document.getElementById('finalScore').innerText = final.toFixed(1);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Aptitudes - Simula tu Futuro</title>
+    <link rel="stylesheet" href="../css/test_aptitudes.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <h1 class="logo">Simula Tu Futuro</h1>
+        </div>
+        <div class="nav">
+            <a href="../index.html" class="btn-logout">Cerrar Sesión</a>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Navegación</h3>
+                <a href="../index.html" class="sidebar-link">← Inicio</a>
+                <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
+                <a href="perfil.html" class="sidebar-link">👤 Mi Perfil</a>
+                <a href="notificaciones.html" class="sidebar-link">🔔 Notificaciones</a>
+                <a href="mensajes.html" class="sidebar-link">💬 Mensajes</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div id="test-container" class="test-box">
+                <div class="progress-bar">
+                    <div id="progress" class="progress-fill"></div>
+                </div>
+
+                <div id="question-area">
+                    <span id="question-number">Pregunta 1 de 8</span>
+                    <h2 id="question-text">¿Qué tan fácil te resulta resolver acertijos lógicos o matemáticos?</h2>
+
+                    <div class="options">
+                        <button class="btn-option" onclick="answer(2)">Muy fácil</button>
+                        <button class="btn-option" onclick="answer(1)">Normal</button>
+                        <button class="btn-option" onclick="answer(0)">Se me dificulta</button>
+                    </div>
+                </div>
+
+                <div id="result-area" style="display: none;">
+                    <div class="icon-result">💪</div>
+                    <h2>Tu Aptitud Destacada:</h2>
+                    <div id="top-aptitude" class="apt-badge">Cargando...</div>
+                    <p id="apt-desc"></p>
+                    <div class="result-actions">
+                        <button class="btn-primary-action" onclick="location.reload()">Repetir</button>
+                        <button class="btn-outline-action" onclick="location.href='dashboard.html'">Finalizar</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const questions = [
+            { text: "¿Te resulta sencillo entender gráficos y diagramas de datos?", cat: "L" },
+            { text: "¿Disfrutas programando o creando algoritmos lógicos?", cat: "L" },
+            { text: "¿Eres bueno detectando errores gramaticales o de redacción?", cat: "V" },
+            { text: "¿Te resulta fácil explicar conceptos complejos con palabras?", cat: "V" },
+            { text: "¿Puedes visualizar objetos en 3D y rotarlos en tu mente?", cat: "E" },
+            { text: "¿Eres bueno armando muebles o siguiendo planos de construcción?", cat: "E" },
+            { text: "¿Tienes facilidad para mediar en conflictos entre personas?", cat: "I" },
+            { text: "¿Eres capaz de liderar y motivar a un equipo de trabajo?", cat: "I" }
+        ];
+
+        let currentQ = 0;
+        let scores = { L: 0, V: 0, E: 0, I: 0 };
+
+        const descriptions = {
+            L: "Razonamiento Lógico: Tienes una mente analítica. Ideal para Ingeniería, Programación, Matemáticas o Economía.",
+            V: "Aptitud Verbal: Posees gran capacidad de expresión y síntesis. Ideal para Derecho, Periodismo, Literatura o Pedagogía.",
+            E: "Visión Espacial: Eres excelente interpretando formas y espacios. Ideal para Arquitectura, Diseño Industrial, Geología o Cirugía.",
+            I: "Liderazgo Interpersonal: Tienes gran habilidad para gestionar grupos. Ideal para Administración, Psicología Organizacional o Ciencias Políticas."
+        };
+
+        function answer(points) {
+            let category = questions[currentQ].cat;
+            scores[category] += points;
+            currentQ++;
+            if (currentQ < questions.length) { updateQuestion(); }
+            else { showResult(); }
+        }
+
+        function updateQuestion() {
+            document.getElementById('question-number').innerText = `Pregunta ${currentQ + 1} de ${questions.length}`;
+            document.getElementById('question-text').innerText = questions[currentQ].text;
+            document.getElementById('progress').style.width = `${(currentQ / questions.length) * 100}%`;
+        }
+
+        function showResult() {
+            document.getElementById('question-area').style.display = 'none';
+            document.getElementById('result-area').style.display = 'block';
+            document.getElementById('progress').style.width = `100%`;
+            let top = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+            const aptNames = { L: "Lógica-Matemática", V: "Verbal", E: "Espacial", I: "Interpersonal" };
+            document.getElementById('top-aptitude').innerText = aptNames[top];
+            document.getElementById('apt-desc').innerText = descriptions[top];
+        }
+    </script>
+</body>
+
+</html>

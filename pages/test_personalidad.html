@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Personalidad - Simula tu Futuro</title>
+    <link rel="stylesheet" href="../css/test_personalidad.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <h1 class="logo">Simula Tu Futuro</h1>
+        </div>
+        <div class="nav">
+            <a href="../index.html" class="btn-logout">Cerrar Sesión</a>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Navegación</h3>
+                <a href="../index.html" class="sidebar-link">← Inicio</a>
+                <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
+                <a href="perfil.html" class="sidebar-link">👤 Mi Perfil</a>
+                <a href="notificaciones.html" class="sidebar-link">🔔 Notificaciones</a>
+                <a href="mensajes.html" class="sidebar-link">💬 Mensajes</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div id="test-container" class="test-box">
+                <div class="progress-bar">
+                    <div id="progress" class="progress-fill"></div>
+                </div>
+
+                <div id="question-area">
+                    <span id="question-number">Pregunta 1 de 10</span>
+                    <h2 id="question-text">¿Te sientes cómodo siendo el centro de atención en un grupo?</h2>
+
+                    <div class="options">
+                        <button class="btn-option" onclick="answer(2)">Muy de acuerdo</button>
+                        <button class="btn-option" onclick="answer(1)">Algo de acuerdo</button>
+                        <button class="btn-option" onclick="answer(0)">En desacuerdo</button>
+                    </div>
+                </div>
+
+                <div id="result-area" style="display: none;">
+                    <div class="icon-result">🧠</div>
+                    <h2>Tu Rasgo Predominante:</h2>
+                    <div id="top-trait" class="trait-badge">Cargando...</div>
+                    <p id="trait-desc"></p>
+                    <div class="result-actions">
+                        <button class="btn-primary-action" onclick="location.reload()">Repetir</button>
+                        <button class="btn-outline-action" onclick="location.href='dashboard.html'">Finalizar</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const questions = [
+            { text: "¿Te resulta fácil hacer nuevos amigos y socializar?", cat: "E" },
+            { text: "¿Prefieres trabajar en equipo antes que solo?", cat: "E" },
+            { text: "¿Sueles planificar tus actividades con mucho detalle?", cat: "O" },
+            { text: "¿Te consideras una persona muy ordenada y puntual?", cat: "O" },
+            { text: "¿Te interesa aprender sobre temas abstractos o teóricos?", cat: "A" },
+            { text: "¿Disfrutas con el arte, la música o la literatura profunda?", cat: "A" },
+            { text: "¿Sueles mantener la calma incluso bajo mucha presión?", cat: "E_E" },
+            { text: "¿Te recuperas rápido después de un fracaso o error?", cat: "E_E" },
+            { text: "¿Te pones fácilmente en el lugar de los demás?", cat: "E_M" },
+            { text: "¿Te gusta ayudar a otros aunque no recibas nada a cambio?", cat: "E_M" }
+        ];
+
+        let currentQ = 0;
+        let scores = { E: 0, O: 0, A: 0, E_E: 0, E_M: 0 };
+
+        const descriptions = {
+            E: "Extroversión: Eres una persona sociable y con energía. Te destacarías en áreas de liderazgo, ventas, relaciones públicas o docencia.",
+            O: "Organización: Eres metódico y responsable. Te iría muy bien en carreras de administración, ingeniería, leyes o ciencias de datos.",
+            A: "Apertura: Eres curioso y creativo. Carreras ideales para ti incluyen arquitectura, diseño, artes o investigación científica.",
+            E_E: "Estabilidad Emocional: Eres resiliente y mantienes la cabeza fría. Ideal para medicina de urgencias, pilotaje o fuerzas de seguridad.",
+            E_M: "Empatía: Tienes una gran conexión con los sentimientos de otros. Carreras sugeridas: Psicología, Trabajo Social, Enfermería o Veterinaria."
+        };
+
+        function answer(points) {
+            let category = questions[currentQ].cat;
+            scores[category] += points;
+            currentQ++;
+            if (currentQ < questions.length) { updateQuestion(); }
+            else { showResult(); }
+        }
+
+        function updateQuestion() {
+            document.getElementById('question-number').innerText = `Pregunta ${currentQ + 1} de ${questions.length}`;
+            document.getElementById('question-text').innerText = questions[currentQ].text;
+            document.getElementById('progress').style.width = `${(currentQ / questions.length) * 100}%`;
+        }
+
+        function showResult() {
+            document.getElementById('question-area').style.display = 'none';
+            document.getElementById('result-area').style.display = 'block';
+            document.getElementById('progress').style.width = `100%`;
+
+            let top = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+            const traitNames = { E: "Extrovertido", O: "Organizado", A: "Creativo/Abierto", E_E: "Resiliente", E_M: "Empático" };
+
+            document.getElementById('top-trait').innerText = traitNames[top];
+            document.getElementById('trait-desc').innerText = descriptions[top];
+        }
+    </script>
+</body>
+
+</html>

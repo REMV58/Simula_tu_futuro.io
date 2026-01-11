@@ -1,0 +1,79 @@
+:root {
+    --primary: #4A90E2;
+    --text-dark: #2D3436;
+    --text-muted: #636E72;
+    --bg-light: #F1F2F6;
+    --white: #FFFFFF;
+    --border: #DFE6E9;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background-color: var(--bg-light); color: var(--text-dark); }
+
+.header {
+    background-color: var(--primary);
+    height: 70px; padding: 0 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.logo { color: var(--white); font-size: 1.4rem; font-weight: 800; }
+.btn-logout {
+    color: var(--white); text-decoration: none; padding: 8px 16px;
+    border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; font-size: 0.9rem;
+}
+
+.main-layout { display: flex; min-height: calc(100vh - 70px); }
+.sidebar {
+    width: 260px; background-color: var(--white);
+    border-right: 1px solid var(--border); padding: 30px 0;
+}
+.sidebar-section { padding: 0 20px; }
+.sidebar-section h3 { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px; }
+.sidebar-link {
+    display: block; padding: 12px 15px;
+    color: var(--text-dark); text-decoration: none;
+    border-radius: 8px; margin-bottom: 5px; font-weight: 500;
+}
+.sidebar-link:hover { background-color: #f8fafc; color: var(--primary); }
+
+.content { flex: 1; padding: 40px; display: flex; justify-content: center; }
+.test-box {
+    width: 100%; max-width: 600px; background: var(--white);
+    padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: center; height: fit-content;
+}
+
+.progress-bar { width: 100%; height: 8px; background: #eee; border-radius: 10px; margin-bottom: 30px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--primary); width: 0%; transition: 0.3s; }
+
+#question-number { color: var(--text-muted); font-size: 0.9rem; }
+#question-text { margin: 20px 0 40px; font-size: 1.4rem; line-height: 1.4; }
+
+.options { display: flex; flex-direction: column; gap: 15px; }
+.btn-option {
+    padding: 18px; border: 2px solid var(--border); border-radius: 12px;
+    background: var(--white); font-size: 1rem; font-weight: 600; cursor: pointer; transition: 0.2s;
+}
+.btn-option:hover { border-color: var(--primary); background: #f0f7ff; color: var(--primary); }
+
+.apt-badge {
+    background: var(--primary); color: white;
+    padding: 10px 25px; border-radius: 50px;
+    display: inline-block; font-size: 1.3rem; font-weight: bold; margin: 20px 0;
+}
+#apt-desc { line-height: 1.6; color: var(--text-muted); margin-bottom: 30px; }
+
+.result-actions { display: flex; gap: 10px; justify-content: center; }
+.btn-primary-action {
+    background: var(--primary); color: white; border: none;
+    padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer;
+}
+.btn-outline-action {
+    background: none; border: 2px solid var(--primary); color: var(--primary);
+    padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .main-layout { flex-direction: column; }
+    .sidebar { width: 100%; border-right: none; }
+}

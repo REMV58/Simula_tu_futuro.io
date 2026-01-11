@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Aprendizaje - Simula tu Futuro</title>
+    <link rel="stylesheet" href="../css/test_aprendizaje.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <h1 class="logo">Simula Tu Futuro</h1>
+        </div>
+        <div class="nav">
+            <a href="../index.html" class="btn-logout">Cerrar Sesión</a>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Navegación</h3>
+                <a href="../index.html" class="sidebar-link">← Volver al Inicio</a>
+                <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
+                <a href="perfil.html" class="sidebar-link">👤 Mi Perfil</a>
+                <a href="notificaciones.html" class="sidebar-link">🔔 Notificaciones</a>
+                <a href="mensajes.html" class="sidebar-link">💬 Mensajes</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div id="test-container" class="test-box">
+                <div class="progress-bar">
+                    <div id="progress" class="progress-fill"></div>
+                </div>
+
+                <div id="question-area">
+                    <span id="question-number">Pregunta 1 de 9</span>
+                    <h2 id="question-text">Cuando recibes un juguete nuevo para armar, ¿qué haces primero?</h2>
+
+                    <div class="options">
+                        <button class="btn-option" onclick="answer('V')">Miro las instrucciones y dibujos</button>
+                        <button class="btn-option" onclick="answer('A')">Le pido a alguien que me explique</button>
+                        <button class="btn-option" onclick="answer('K')">Empiezo a armarlo para ver cómo encaja</button>
+                    </div>
+                </div>
+
+                <div id="result-area" style="display: none;">
+                    <div class="icon-result">📖</div>
+                    <h2>Tu Estilo de Aprendizaje es:</h2>
+                    <div id="top-style" class="style-badge">Cargando...</div>
+                    <p id="style-desc"></p>
+                    <div class="result-actions">
+                        <button class="btn-primary-action" onclick="location.reload()">Repetir</button>
+                        <button class="btn-outline-action" onclick="location.href='dashboard.html'">Finalizar</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const questions = [
+            { text: "¿Qué te distrae más cuando estás estudiando?", options: { V: "El desorden visual", A: "Los ruidos del ambiente", K: "Sentirme incómodo o encerrado" } },
+            { text: "Si tienes que aprender algo nuevo, ¿cómo prefieres hacerlo?", options: { V: "Viendo un video o presentación", A: "Escuchando un podcast o charla", K: "Practicando y haciendo cosas" } },
+            { text: "Al recordar una película, ¿qué es lo primero que viene a tu mente?", options: { V: "Las escenas y los colores", A: "Los diálogos y la música", K: "Las emociones que sentiste" } },
+            { text: "¿Cómo prefieres recibir instrucciones?", options: { V: "Por escrito o en un mapa", A: "Que me las digan verbalmente", K: "Que me muestren cómo se hace" } },
+            { text: "Cuando descansas, ¿qué prefieres hacer?", options: { V: "Ver televisión o leer", A: "Escuchar música o conversar", K: "Hacer deporte o manualidades" } },
+            { text: "¿Cómo es tu ortografía usualmente?", options: { V: "Buena, visualizo las palabras", A: "Regular, las digo en voz alta", K: "Me cuesta, tengo que escribirlas" } },
+            { text: "En una clase, ¿qué te ayuda más?", options: { V: "Que el profesor use la pizarra", A: "Que el profesor explique bien", K: "Hacer experimentos o actividades" } },
+            { text: "Si estás enojado, ¿qué sueles hacer?", options: { V: "Poner mala cara y callar", A: "Expresar mi molestia hablando", K: "Cerrar puertas o moverme mucho" } }
+        ];
+
+        let currentQ = 0;
+        let scores = { V: 0, A: 0, K: 0 };
+
+        const descriptions = {
+            V: "Visual: Aprendes mejor mediante imágenes, mapas conceptuales y videos. Te sirve mucho usar destacados de colores en tus apuntes PAES.",
+            A: "Auditivo: Aprendes escuchando y explicando a otros. Te recomendamos grabar tus resúmenes y escucharlos como podcast.",
+            K: "Kinestésico: Aprendes haciendo y moviéndote. Te sirve estudiar caminando o asociando conceptos con gestos y objetos físicos."
+        };
+
+        function answer(cat) {
+            scores[cat]++;
+            currentQ++;
+            if (currentQ < questions.length) { updateQuestion(); }
+            else { showResult(); }
+        }
+
+        function updateQuestion() {
+            const q = questions[currentQ];
+            document.getElementById('question-number').innerText = `Pregunta ${currentQ + 1} de ${questions.length}`;
+            document.getElementById('question-text').innerText = q.text;
+
+            const btns = document.querySelectorAll('.btn-option');
+            btns[0].innerText = q.options.V; btns[0].setAttribute("onclick", "answer('V')");
+            btns[1].innerText = q.options.A; btns[1].setAttribute("onclick", "answer('A')");
+            btns[2].innerText = q.options.K; btns[2].setAttribute("onclick", "answer('K')");
+
+            document.getElementById('progress').style.width = `${(currentQ / questions.length) * 100}%`;
+        }
+
+        function showResult() {
+            document.getElementById('question-area').style.display = 'none';
+            document.getElementById('result-area').style.display = 'block';
+            document.getElementById('progress').style.width = `100%`;
+            let top = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+            const styleNames = { V: "Visual", A: "Auditivo", K: "Kinestésico" };
+            document.getElementById('top-style').innerText = styleNames[top];
+            document.getElementById('style-desc').innerText = descriptions[top];
+        }
+    </script>
+</body>
+
+</html>
