@@ -69,12 +69,13 @@
         <div class="modal-content" style="max-width: 900px; width: 95%;">
             <button class="close-modal" onclick="cerrarModal()">&times;</button>
 
+            <!-- VISOR 360 -->
             <div id="panorama-container"></div>
 
+            <!-- INFO + SIMULADOR -->
             <div class="modal-info" style="padding: 20px;">
                 <h2 id="modalTitle" style="margin-bottom: 5px;"></h2>
 
-                <!-- 👇 ESTO ES LO QUE FALTABA -->
                 <p id="modalCareer" style="font-weight: 600; color: #4A90E2; margin-bottom: 10px;"></p>
 
                 <p id="modalDesc" style="color: #636E72; line-height: 1.6;"></p>
@@ -82,6 +83,21 @@
                 <p style="font-size: 0.8rem; color: #4A90E2; margin-top: 10px;">
                     💡 Haz clic y arrastra para rotar la vista.
                 </p>
+
+                <!-- 🔘 ACCIONES DEL SIMULADOR -->
+                <div id="simulatorActions" style="margin-top: 20px;"></div>
+
+                <!-- 📢 RESULTADO -->
+                <div id="simulatorResult" style="
+                    margin-top: 15px;
+                    padding: 15px;
+                    border-radius: 10px;
+                    background: #F1F2F6;
+                    color: #2D3436;
+                    font-weight: 600;
+                    text-align: center;
+                    display: none;
+                "></div>
             </div>
         </div>
     </div>

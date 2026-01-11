@@ -76,11 +76,13 @@ function renderizarSimuladores(lista) {
 }
 
 /*********************************
- * ABRE EL MODAL CON A-FRAME
+ * ABRE EL MODAL + SIMULADOR
  *********************************/
 function abrirModal(exp) {
     const modal = document.getElementById('videoModal');
     const container = document.getElementById('panorama-container');
+    const actions = document.getElementById('simulatorActions');
+    const result = document.getElementById('simulatorResult');
 
     container.innerHTML = `
         <a-scene embedded>
@@ -97,8 +99,38 @@ function abrirModal(exp) {
     document.getElementById('modalCareer').innerText = exp.carrera;
     document.getElementById('modalDesc').innerText = exp.descripcion;
 
+    actions.innerHTML = "";
+    result.style.display = "none";
+
+    // ACCIONES DEL SIMULADOR (INGENIERÍA ALMA)
+    actions.innerHTML = `
+        <button onclick="mostrarResultado('📡 Antenas alineadas correctamente. Precisión milimétrica confirmada.')"
+            style="width:100%; padding:12px; margin-bottom:10px; border-radius:10px; border:none; background:#4A90E2; color:white; font-weight:600; cursor:pointer;">
+            Analizar alineación de antenas
+        </button>
+
+        <button onclick="mostrarResultado('📊 Señal recibida con interferencia mínima. Datos aptos para investigación científica.')"
+            style="width:100%; padding:12px; margin-bottom:10px; border-radius:10px; border:none; background:#00B894; color:white; font-weight:600; cursor:pointer;">
+            Evaluar calidad de señal
+        </button>
+
+        <button onclick="mostrarResultado('🛰️ Comunicación establecida con el centro de control. Sistemas operativos.')"
+            style="width:100%; padding:12px; border-radius:10px; border:none; background:#2D3436; color:white; font-weight:600; cursor:pointer;">
+            Verificar comunicación remota
+        </button>
+    `;
+
     modal.style.display = "flex";
     document.body.style.overflow = "hidden";
+}
+
+/*********************************
+ * MUESTRA RESULTADO DEL SIMULADOR
+ *********************************/
+function mostrarResultado(mensaje) {
+    const result = document.getElementById('simulatorResult');
+    result.innerText = mensaje;
+    result.style.display = "block";
 }
 
 /*********************************
@@ -107,9 +139,11 @@ function abrirModal(exp) {
 function cerrarModal() {
     const modal = document.getElementById('videoModal');
     const container = document.getElementById('panorama-container');
+    const result = document.getElementById('simulatorResult');
 
     modal.style.display = "none";
     container.innerHTML = "";
+    result.style.display = "none";
     document.body.style.overflow = "auto";
 }
 
